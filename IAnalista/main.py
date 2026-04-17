@@ -5,7 +5,8 @@ from google import genai
 from google.genai import types 
 
 load_dotenv()
-CLAU=os.getenv('KEYAPI')
+CLAU = os.getenv("KEYAPI")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
 
 if CLAU is None:
     print("Alguna cosa no ha anat bé en el procés d'agafar la clau!!")
@@ -19,8 +20,8 @@ try:
     prompt=input("No te rai/ASNEF, Deute_Altres_Entitat:200€,Lloger:400€,1500€ de salari net,Contracte: Indefinit, Quota_Prestec_Solicitat: 300€. Avalua solvència i DTI: ")
 
     # a la API de Gemini per obtenir resposta accedim com a client als seus models
-    resposta=client.models.generate_content(
-        model='gemini-2.0-flash-lite', 
+    resposta = client.models.generate_content(
+        model=MODEL,
         contents=prompt,
         config=types.GenerateContentConfig(
             system_instruction=(
